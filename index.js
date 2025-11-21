@@ -16,8 +16,16 @@ let bird = {
     y: birdY,
     width: birdWidth,
     height: birdHeight
-
 }
+
+let pipeArray = [];
+let pipeWidth = 64;
+let pipeHeight = 512;
+let pipeX = boardWidth;
+let pipeY = 0;
+
+let topPipeImg;
+let bottomPipeImg;
 
 window.onload = function () {
     board = document.getElementById("board");
