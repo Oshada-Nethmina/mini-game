@@ -33,4 +33,13 @@ window.onload = function () {
     birdImg.onload = function () {
         context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
     }
+
+    requestAnimationFrame(Update);
+}
+
+function Update(){
+    requestAnimationFrame(Update);
+    context.clearRect(0, 0, board.width, board.height);
+
+    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 }
