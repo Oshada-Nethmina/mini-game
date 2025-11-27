@@ -46,14 +46,29 @@ window.onload = function () {
     topPipeImg.src = "./assets/toppipe.png"
 
     bottomPipeImg = new Image();
-    bottomPipeImg
+    bottomPipeImg.src = "./assets/bottompipe.png"
 
     requestAnimationFrame(Update);
+    this.setInterval(placePipes, 1500);
 }
 
-function Update(){
+function Update() {
     requestAnimationFrame(Update);
     context.clearRect(0, 0, board.width, board.height);
 
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+}
+
+function placePipes() {
+
+    let topPipe = {
+        img : topPipeImg,
+        x : pipeX,
+        y : pipeY,
+        width : pipeWidth,
+        height : pipeHeight,
+        passed : false
+    }
+
+    pipeArray.push(topPipe);
 }
