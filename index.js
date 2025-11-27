@@ -27,6 +27,8 @@ let pipeY = 0;
 let topPipeImg;
 let bottomPipeImg;
 
+let velocityX = -2;
+
 window.onload = function () {
     board = document.getElementById("board");
     board.width = boardWidth;
@@ -57,17 +59,22 @@ function Update() {
     context.clearRect(0, 0, board.width, board.height);
 
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+
+    for (let i = 0; i < pipeArray.length; i++) {
+        let pipe = pipeArray[i];
+        context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
+    }
 }
 
 function placePipes() {
 
     let topPipe = {
-        img : topPipeImg,
-        x : pipeX,
-        y : pipeY,
-        width : pipeWidth,
-        height : pipeHeight,
-        passed : false
+        img: topPipeImg,
+        x: pipeX,
+        y: pipeY,
+        width: pipeWidth,
+        height: pipeHeight,
+        passed: false
     }
 
     pipeArray.push(topPipe);
