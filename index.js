@@ -28,6 +28,8 @@ let topPipeImg;
 let bottomPipeImg;
 
 let velocityX = -2;
+let velocityY = 0;
+let gravity = 0.4;
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -51,13 +53,16 @@ window.onload = function () {
     bottomPipeImg.src = "./assets/bottompipe.png"
 
     requestAnimationFrame(Update);
-    this.setInterval(placePipes, 1500);
+    setInterval(placePipes, 1500);
+    document.addEventListener("keydown", moveBird);
 }
 
 function Update() {
     requestAnimationFrame(Update);
     context.clearRect(0, 0, board.width, board.height);
 
+    velocityY += gravity;
+    bird.y += velocityY;
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
     for (let i = 0; i < pipeArray.length; i++) {
@@ -69,7 +74,7 @@ function Update() {
 
 function placePipes() {
 
-    let randomPipeY = pipeY - pipeHeight/4 - Math.random() * (pipeHeight/2);
+    let randomPipeY = pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2);
     let openingSpace = board.height / 4;
 
     let topPipe = {
@@ -93,3 +98,10 @@ function placePipes() {
     }
     pipeArray.push(bottomPipe);
 }
+
+function moveBird(e) {
+    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+        velocityY = -6;
+    }
+}
+
