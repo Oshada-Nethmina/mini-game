@@ -32,6 +32,7 @@ let velocityY = 0;
 let gravity = 0.4;
 
 let gameOver = false;
+let score = 0;
 
 window.onload = function () {
     board = document.getElementById("board");
@@ -71,7 +72,9 @@ function Update() {
     bird.y = Math.max(bird.y + velocityY, 0);
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
-   
+    if (bird.y > board.height) {
+        gameOver = true;
+    }
 
     for (let i = 0; i < pipeArray.length; i++) {
         let pipe = pipeArray[i];
@@ -82,6 +85,10 @@ function Update() {
             gameOver = true;
         }
     }
+
+    context.fillStyle = "white";
+    context.font = "45px sans-serif";
+    context.fillText("Score: " + score, 5, 45);
 }
 
 function placePipes() {
